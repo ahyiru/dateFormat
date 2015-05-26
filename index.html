@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>dateFormat</title>
+		<meta charset="utf-8">
+		<style>
+			input{width:250px;}
+			section{padding:20px;border-bottom:1px dashed #ccc;}
+			button{background:#808080;color:#fff}
+			.cl{margin:20px;background:#FF8C00;color:#fff}
+		</style>
+	</head>
+	<body>
+		<section>
+			<input type="text"><button>今天</button>
+			<input type="text"><button>本日</button>
+			<input type="text"><button>昨天</button>
+			<input type="text"><button>过去一天</button>
+		</section>
+		<section>
+			<input type="text"><button>今天</button>
+			<input type="text"><button>本周</button>
+			<input type="text"><button>上周</button>
+			<input type="text"><button>过去一周</button>
+		</section>
+		<section>
+			<input type="text"><button>今天</button>
+			<input type="text"><button>本月</button>
+			<input type="text"><button>上月</button>
+			<input type="text"><button>过去一月</button>
+		</section>
+		<section>
+			<input type="text"><button>今天</button>
+			<input type="text"><button>今年</button>
+			<input type="text"><button>去年</button>
+			<input type="text"><button>过去一年</button>
+		</section>
+		<button class="cl">清除</button>
+		<script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+		<script src="dateFormat.js"></script>
+		<script>
+			$(function(){
+				var myt=get_time();
+				var myval=[myt.today1,myt.today0+'~'+myt.today1,myt.yesterday0+'~'+myt.yesterday2,myt.yesterday1+'~'+myt.today1,
+						   myt.today,myt.week0+'~'+myt.today,myt.pweek0+'~'+myt.pweek2,myt.pweek1+'~'+myt.today,
+						   myt.today,myt.month0+'~'+myt.today,myt.pmonth0+'~'+myt.pmonth2,myt.pmonth1+'~'+myt.today,
+						   myt.today,myt.year0+'~'+myt.today,myt.pyear0+'~'+myt.pyear2,myt.pyear1+'~'+myt.today
+						  ],
+					l=$('button').length;
+				$('input').each(function(i){
+					$(this).val(myval[i]);
+				})
+				$('button').each(function(i){
+					$(this).on('click',function(){
+						if(i===l-1) $('input').val('');
+						else $(this).prev().val(myval[i]);
+					})
+				})
+			})
+		</script>
+	</body>
+</html>
